@@ -42,7 +42,7 @@ function App() {
           <AddReservation meals={meals} />
         </Route>
         <Route exact path={`/meals/:id/reviews`}>
-          <Mealreviews meals={meals} />
+          <Mealreviews meals={meals} reviews={reviews} />
         </Route>
         <Route exact path="/create-meal">
           <Createmeal></Createmeal>

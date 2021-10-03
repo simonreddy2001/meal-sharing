@@ -13,16 +13,18 @@ const AddReservation = (props) => {
             <div className="row">
                 <div className="col s12 m6">
                     <div className="card blue-grey darken-1">
-                        <div className="card-content white-text">
+                        {meal ? (<><div className="card-content white-text">
                             <span className="card-title">{meal.title}</span>
-                            <p>:{meal.description}</p>
-                            <p>Location:{meal.location}</p>
-                            <p>Price:{meal.price}</p>
+                            <p>Details: {meal.description}</p>
+                            <p>Location: {meal.location}</p>
+                            <p>Price: {meal.price}</p>
+                            <p>Maximum Reservations: {meal.max_reservations}</p>
+                            <p>Created On: {meal.created_date}</p>
                         </div>
-                        <div className="card-action">
-                            <a href={`/meals/${meal.id}`}>Reserve</a>
-                            <a href={`/meals/${meal.id}/reviews`}>Check Reviews</a>
-                        </div>
+                            <div className="card-action">
+                                <a href={`/meals/${meal.id}`}>Reserve</a>
+                                <a href={`/meals/${meal.id}/reviews`}>Check Reviews</a>
+                            </div></>) : "Loading"}
                     </div>
                 </div>
             </div>
@@ -30,7 +32,7 @@ const AddReservation = (props) => {
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
+                            <input id="first_name" type="text" className="validate" />
                             <label htmlFor="first_name">First Name</label>
                         </div>
                         <div className="input-field col s6">
@@ -40,14 +42,8 @@ const AddReservation = (props) => {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input disabled value="I am not editable" id="disabled" type="text" className="validate" />
-                            <label htmlFor="disabled">Disabled</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="password" type="password" className="validate" />
-                            <label htmlFor="password">Password</label>
+                            <input id="no_guests" type="number" className="validate" />
+                            <label htmlFor="no_guests">Number of Guests</label>
                         </div>
                     </div>
                     <div className="row">
@@ -57,15 +53,13 @@ const AddReservation = (props) => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col s12">
-                            This is an inline input field:
-                            <div className="input-field inline">
-                                <input id="email_inline" type="email" className="validate" />
-                                <label htmlFor="email_inline">Email</label>
-                                <span className="helper-text" data-error="wrong" data-success="right">Helper text</span>
-                            </div>
+                        <div className="input-field col s12">
+                            <input id="phone" type="tel" className="validate" />
+                            <label htmlFor="phone">Phone Number</label>
                         </div>
                     </div>
+
+                    <button>RESERVE</button>
                 </form>
             </div>
             <Footer />

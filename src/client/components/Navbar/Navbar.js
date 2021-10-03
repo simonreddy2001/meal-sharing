@@ -1,11 +1,13 @@
 import React from 'react';
+import logo from "./../../assets/images/logo.png"
 
 const Navbar = () => {
     return (
         <div>
             <nav>
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo">Meal-Sharing</a>
+                    <img src={logo} alt="logo" width="122" />
+                    <a href="#" className="brand-logo"> Meal-Sharing</a>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li><a href="/meals">Meals</a></li>
                         <li><a href="/create-meal">Add Meal</a></li>

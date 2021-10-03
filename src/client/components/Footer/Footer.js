@@ -6,24 +6,24 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col l6 s12">
-                        <h5 className="white-text">Footer Content</h5>
-                        <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                        <h5 className="white-text">ABOUT US</h5>
+                        <p className="grey-text text-lighten-4">We are having food across the globe and having passion to serve customers with all contenent foods.</p>
                     </div>
                     <div className="col l4 offset-l2 s12">
-                        <h5 className="white-text">Links</h5>
+                        <h5 className="white-text">Follow Us</h5>
                         <ul>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!">Instagram</a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!">Twitter</a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!">LinkedIn</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div className="footer-copyright">
                 <div className="container">
-                    © 2014 Copyright Text
-                    <a className="grey-text text-lighten-4 right" href="#!">More Links</a>
+                    © 2021 MealSharing,Inc
+                    <a className="grey-text text-lighten-4 right" href="#!">Blog</a>
                 </div>
             </div>
         </footer>
