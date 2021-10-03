@@ -1,12 +1,16 @@
-import React, { useParams } from 'react';
+import React from 'react';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import { useParams } from "react-router";
 
 const Mealreviews = (props) => {
+    // const [mealReviews, setMealReviews] = React.useState([])
     const params = useParams();
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
-    const review = props.reviews.filter((r) => r.meal_id == Number(params.id));
-    console.log(review)
+    const mealReviews = props.reviews.filter((r) => r.meal_id == Number(params.id));
+    // setMealReviews(mealReviews.concat(mealReview))
+    console.log(meal)
+    console.log(mealReviews)
     return (
         <div>
             <Navbar />
@@ -23,7 +27,7 @@ const Mealreviews = (props) => {
                         </div>
                             <div className="card-action">
                                 <ul>
-                                    {/* {review.map((rev) => (
+                                    {mealReviews.map((rev) => (
                                         <li key={rev.id}>
                                             <div className="row">
                                                 <div className="col s12 m6">
@@ -40,7 +44,7 @@ const Mealreviews = (props) => {
                                                 </div>
                                             </div>
                                         </li>
-                                    ))} */}
+                                    ))}
                                 </ul>
                             </div></>) : "Loading"}
                     </div>

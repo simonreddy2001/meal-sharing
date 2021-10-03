@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const Meals = (props) => {
     return (
@@ -17,8 +18,8 @@ const Meals = (props) => {
                                         <p>{meal.description}</p>
                                     </div>
                                     <div className="card-action">
-                                        <a href={`/meals/${meal.id}`}>Reserve</a>
-                                        <a href={`/meals/${meal.id}/reviews`}>Check Reviews</a>
+                                        <Link to={`/meals/${meal.id}`}>Reserve</Link>
+                                        <Link to={`/meals/${meal.id}/reviews`}>Check Reviews</Link>
                                     </div>
                                 </div>
                             </div>

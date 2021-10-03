@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from "react-router";
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const AddReservation = (props) => {
     const params = useParams();
@@ -22,8 +23,8 @@ const AddReservation = (props) => {
                             <p>Created On: {meal.created_date}</p>
                         </div>
                             <div className="card-action">
-                                <a href={`/meals/${meal.id}`}>Reserve</a>
-                                <a href={`/meals/${meal.id}/reviews`}>Check Reviews</a>
+                                <Link to={`/meals/${meal.id}`}>Reserve</Link>
+                                <Link to={`/meals/${meal.id}/reviews`}>Check Reviews</Link>
                             </div></>) : "Loading"}
                     </div>
                 </div>

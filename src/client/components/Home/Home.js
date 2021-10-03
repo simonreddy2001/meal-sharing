@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import "./Home.css"
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
     return (<>
@@ -22,8 +23,8 @@ const Home = (props) => {
                                         <p>{meal.description}</p>
                                     </div>
                                     <div className="card-action">
-                                        <a href={`/meals/${meal.id}`}>Reserve</a>
-                                        <a href={`/meals/${meal.id}/reviews`}>Check Reviews</a>
+                                        <Link to={`/meals/${meal.id}`}>Reserve</Link>
+                                        <Link to={`/meals/${meal.id}/reviews`}>Check Reviews</Link>
                                     </div>
                                 </div>
                             </div>

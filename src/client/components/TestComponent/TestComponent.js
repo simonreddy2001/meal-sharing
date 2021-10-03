@@ -3,11 +3,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./testComponentStyle.css";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 export default function TestComponent() {
   return (
-    <section className="test-component">
-      <p>in a component</p>
-    </section>
+    <>
+      <Navbar />
+      <section className="test-component">
+        <h1>Just to create new component</h1>
+        <p>in a test component</p>
+      </section>
+      <Footer />
+    </>
   );
 }
