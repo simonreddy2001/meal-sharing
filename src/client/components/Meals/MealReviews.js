@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import { useParams } from "react-router";
 import ReactStars from "react-rating-stars-component";
+import Moment from 'moment';
 
 const Mealreviews = (props) => {
     const params = useParams();
@@ -13,10 +14,44 @@ const Mealreviews = (props) => {
         count: 5,
         isHalf: false,
         value: 4,
-        activeColor: "yellow",
-        onChange: newValue => {
-            console.log(`Example 3: new value is ${newValue}`);
-        }
+        activeColor: "yellow"
+    };
+    const [review, setReview] = useState();
+    const [title, setTitle] = useState("");
+    const date = Moment(new Date()).format('YYYY-MM-DD');
+    const [description, setDescription] = useState("");
+    const [stars, setStars] = useState(starsValue.value);
+
+    useEffect(() => {
+        console.log(review);
+        fetch("http://localhost:5000/api/reviews", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(review),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+                alert(error)
+            });
+    }, [review]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newReview = {
+            title: title,
+            meal_id: Number(params.id),
+            created_date: date,
+            description: description,
+            stars: stars
+        };
+        setReview(newReview);
+        console.log(review);
     };
 
     return (
@@ -63,25 +98,25 @@ const Mealreviews = (props) => {
                 </div>
             </div>
             <div className="row">
-                <form className="col s12">
+                <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" />
+                            <input id="title" type="text" className="validate" onChange={(e) => setTitle(e.target.value)} />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="description" type="text" className="validate" />
+                            <input id="description" type="text" className="validate" onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <ReactStars {...starsValue} />
+                            <ReactStars {...starsValue} onChange={(e) => setStars(e.target.value)} />
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">Add Review
+                    <button className="btn waves-effect waves-light" type="submit">Add Review
                         <i className="material-icons right">send</i>
                     </button>
 

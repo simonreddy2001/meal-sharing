@@ -8,7 +8,7 @@ import Moment from 'moment';
 const AddReservation = (props) => {
     const params = useParams();
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
-    const [reservation, setReservation] = useState({});
+    const [reservation, setReservation] = useState();
     const [guests, setGuests] = useState(1);
     const date = Moment(new Date()).format('YYYY-MM-DD');
     const [contact, setContact] = useState("");
@@ -93,7 +93,7 @@ const AddReservation = (props) => {
                             <label htmlFor="phone">Phone Number</label>
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">RESERVE
+                    <button className="btn waves-effect waves-light" type="submit">RESERVE
                         <i className="material-icons right">send</i>
                     </button>
                 </form>
