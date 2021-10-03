@@ -1,13 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 
 const AddReservation = (props) => {
     const params = useParams();
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
-    console.log(meal)
+    const [reservation, setReservation] = useState({});
+    const [guests, setGuests] = useState(1);
+    const date = Moment(new Date()).format('YYYY-MM-DD');
+    const [contact, setContact] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    useEffect(() => {
+        console.log(reservation);
+        fetch("http://localhost:5000/api/reservations", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(reservation),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+                alert(error)
+            });
+    }, [reservation]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newReservation = {
+            number_of_guests: guests,
+            meal_id: Number(params.id),
+            created_date: date,
+            contact_phonenumber: contact,
+            contact_name: name,
+            contact_email: email,
+        };
+        setReservation(newReservation);
+        console.log(reservation);
+    };
     return (
         <>
             <Navbar />
@@ -30,37 +68,34 @@ const AddReservation = (props) => {
                 </div>
             </div>
             <div className="row">
-                <form className="col s12">
+                <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
-                        <div className="input-field col s6">
-                            <input id="first_name" type="text" className="validate" />
-                            <label htmlFor="first_name">First Name</label>
-                        </div>
-                        <div className="input-field col s6">
-                            <input id="last_name" type="text" className="validate" />
-                            <label htmlFor="last_name">Last Name</label>
+                        <div className="input-field col s12">
+                            <input id="full_name" type="text" className="validate" onChange={(e) => setName(e.target.value)} />
+                            <label htmlFor="full_name">Full Name</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="no_guests" type="number" className="validate" />
+                            <input id="no_guests" type="number" className="validate" min="1" onChange={(e) => setGuests(e.target.value)} />
                             <label htmlFor="no_guests">Number of Guests</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" />
+                            <input id="email" type="email" className="validate" onChange={(e) => setEmail(e.target.value)} />
                             <label htmlFor="email">Email</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="phone" type="tel" className="validate" />
+                            <input id="phone" type="tel" className="validate" onChange={(e) => setContact(e.target.value)} />
                             <label htmlFor="phone">Phone Number</label>
                         </div>
                     </div>
-
-                    <button>RESERVE</button>
+                    <button className="btn waves-effect waves-light" type="submit" name="action">RESERVE
+                        <i className="material-icons right">send</i>
+                    </button>
                 </form>
             </div>
             <Footer />

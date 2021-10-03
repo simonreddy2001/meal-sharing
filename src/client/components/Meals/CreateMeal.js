@@ -7,50 +7,50 @@ const Createmeal = () => {
         <div>
             <Navbar />
             <div className="row">
-                <form className="col s12">
+                <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
-                        <div className="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
-                            <label htmlFor="first_name">First Name</label>
-                        </div>
-                        <div className="input-field col s6">
-                            <input id="last_name" type="text" className="validate" />
-                            <label htmlFor="last_name">Last Name</label>
+                        <div className="input-field col s12">
+                            <input id="title" type="text" className="validate" />
+                            <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input disabled value="I am not editable" id="disabled" type="text" className="validate" />
-                            <label htmlFor="disabled">Disabled</label>
+                            <input id="description" type="text" className="validate" />
+                            <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="password" type="password" className="validate" />
-                            <label htmlFor="password">Password</label>
+                            <input id="location" type="text" className="validate" />
+                            <label htmlFor="location">Location</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" />
-                            <label htmlFor="email">Email</label>
+                            <input id="price" type="number" className="validate" min="1" />
+                            <label htmlFor="price">Price</label>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col s12">
-                            This is an inline input field:
-                            <div className="input-field inline">
-                                <input id="email_inline" type="email" className="validate" />
-                                <label htmlFor="email_inline">Email</label>
-                                <span className="helper-text" data-error="wrong" data-success="right">Helper text</span>
-                            </div>
+                        <div className="input-field col s12">
+                            <input id="max_reservations" type="number" className="validate" min="1" />
+                            <label htmlFor="max_reservations">Maximum Reservations Available</label>
                         </div>
                     </div>
-                    <button>RESERVE</button>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input id="when" type="datetime" className="validate" />
+                            <label htmlFor="when">Available Date</label>
+                        </div>
+                    </div>
+                    <button className="btn waves-effect waves-light" type="submit" name="action">Create A Meal
+                        <i className="material-icons right">send</i>
+                    </button>
                 </form>
-            </div>
+            </div >
             <Footer />
-        </div>
+        </div >
     );
 }
 

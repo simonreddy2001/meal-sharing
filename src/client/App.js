@@ -6,6 +6,8 @@ import AddReservation from "./components/AddReservation/AddReservation";
 import TestComponent from "./components/TestComponent/TestComponent";
 import Createmeal from "./components/Meals/CreateMeal";
 import Mealreviews from "./components/Meals/MealReviews";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -49,6 +51,12 @@ function App() {
         </Route>
         <Route exact path="/test-component">
           <TestComponent></TestComponent>
+        </Route>
+        <Route path="*">
+          <Navbar />
+          <h1>Not Found: 404</h1>
+          <p>It is not available what you are looking for .. please go to navigation and try other links</p>
+          <Footer />
         </Route>
       </Switch>
     </Router>
