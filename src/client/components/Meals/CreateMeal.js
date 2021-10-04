@@ -46,6 +46,12 @@ const Createmeal = () => {
         };
         setNewMeal(createMeal);
         console.log(newMeal);
+        setTitle('');
+        setMaxReservations('');
+        setDescription('');
+        setLocation('');
+        setWhen();
+        setPrice();
     };
     return (
         <div>

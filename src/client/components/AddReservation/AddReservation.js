@@ -47,6 +47,10 @@ const AddReservation = (props) => {
         };
         setReservation(newReservation);
         console.log(reservation);
+        setName('');
+        setGuests();
+        setContact('');
+        setEmail('');
     };
     return (
         <>
