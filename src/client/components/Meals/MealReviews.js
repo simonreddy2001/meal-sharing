@@ -35,14 +35,14 @@ const Mealreviews = (props) => {
                 },
                 body: JSON.stringify(review),
             })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Success:", data);
-            })
-            .catch((error) => {
-                console.log("Error:", error);
-                alert(error)
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Success:", data);
+                })
+                .catch((error) => {
+                    console.log("Error:", error);
+                    // alert(error)
+                });
         }
     }, [review]);
 

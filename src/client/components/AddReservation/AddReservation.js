@@ -24,14 +24,14 @@ const AddReservation = (props) => {
                 },
                 body: JSON.stringify(reservation),
             })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Success:", data);
-            })
-            .catch((error) => {
-                console.log("Error:", error);
-                alert(error)
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Success:", data);
+                })
+                .catch((error) => {
+                    console.log("Error:", error);
+                    // alert(error)
+                });
         }
     }, [reservation]);
 
