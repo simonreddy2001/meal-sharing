@@ -14,21 +14,23 @@ const Createmeal = () => {
     const [price, setPrice] = useState();
     useEffect(() => {
         console.log(newMeal);
-        fetch("http://localhost:5000/api/meals", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newMeal),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Success:", data);
+        if (newMeal) {
+            fetch("http://localhost:5000/api/meals", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newMeal),
             })
-            .catch((error) => {
-                console.log("Error:", error);
-                alert(error)
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Success:", data);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert(error)
+                });
+        }
     }, [newMeal]);
 
     const handleSubmit = (e) => {
@@ -86,7 +88,7 @@ const Createmeal = () => {
                             <label htmlFor="when">Available Date</label>
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit">Create A Meal
+                    <button className="btn waves-effect waves-light" type="submit" name="action">Create A Meal
                         <i className="material-icons right">send</i>
                     </button>
                 </form>

@@ -16,13 +16,14 @@ const AddReservation = (props) => {
     const [email, setEmail] = useState("");
     useEffect(() => {
         console.log(reservation);
-        fetch("http://localhost:5000/api/reservations", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(reservation),
-        })
+        if (reservation) {
+            fetch("http://localhost:5000/api/reservations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(reservation),
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log("Success:", data);
@@ -31,6 +32,7 @@ const AddReservation = (props) => {
                 console.log("Error:", error);
                 alert(error)
             });
+        }
     }, [reservation]);
 
     const handleSubmit = (e) => {
@@ -50,7 +52,7 @@ const AddReservation = (props) => {
         <>
             <Navbar />
             <div className="row">
-                <div className="col s12 m6">
+                <div className="col s12 ">
                     <div className="card blue-grey darken-1">
                         {meal ? (<><div className="card-content white-text">
                             <span className="card-title">{meal.title}</span>

@@ -14,7 +14,10 @@ const Mealreviews = (props) => {
         count: 5,
         isHalf: false,
         value: 4,
-        activeColor: "yellow"
+        activeColor: "yellow",
+        onChange: newValue => {
+            setStars(newValue)
+        }
     };
     const [review, setReview] = useState();
     const [title, setTitle] = useState("");
@@ -24,13 +27,14 @@ const Mealreviews = (props) => {
 
     useEffect(() => {
         console.log(review);
-        fetch("http://localhost:5000/api/reviews", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(review),
-        })
+        if (review) {
+            fetch("http://localhost:5000/api/reviews", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(review),
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log("Success:", data);
@@ -39,16 +43,17 @@ const Mealreviews = (props) => {
                 console.log("Error:", error);
                 alert(error)
             });
+        }
     }, [review]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const newReview = {
-            title: title,
-            meal_id: Number(params.id),
-            created_date: date,
-            description: description,
-            stars: stars
+            'title': title,
+            'meal_id': Number(params.id),
+            'created_date': date,
+            'description': description,
+            'stars': stars
         };
         setReview(newReview);
         console.log(review);
@@ -58,7 +63,7 @@ const Mealreviews = (props) => {
         <div>
             <Navbar />
             <div className="row">
-                <div className="col s12 m6">
+                <div className="col s12 ">
                     <div className="card blue-grey darken-1">
                         {meal ? (<><div className="card-content white-text">
                             <span className="card-title">{meal.title}</span>
@@ -73,7 +78,7 @@ const Mealreviews = (props) => {
                                     {!mealReviews.length == 0 ? (mealReviews.map((rev) => (
                                         <li key={rev.id}>
                                             <div className="row">
-                                                <div className="col s12 m6">
+                                                <div className="col s12 m9">
                                                     <div className="card blue-grey darken-1">
                                                         <div className="card-content white-text">
                                                             <span className="card-title">{rev.title}</span>
@@ -101,7 +106,7 @@ const Mealreviews = (props) => {
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" onChange={(e) => setTitle(e.target.value)} />
+                            <input id="title" type="text" className="validate" required onChange={(e) => setTitle(e.target.value)} />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
@@ -113,7 +118,7 @@ const Mealreviews = (props) => {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <ReactStars {...starsValue} onChange={(e) => setStars(e.target.value)} />
+                            <ReactStars {...starsValue} />
                         </div>
                     </div>
                     <button className="btn waves-effect waves-light" type="submit">Add Review
