@@ -27,7 +27,7 @@ const Createmeal = () => {
                     console.log("Success:", data);
                 })
                 .catch((error) => {
-                    console.error("Error:", error);
+                    console.log("Error:", error);
                     // alert(error)
                 });
         }
@@ -36,22 +36,22 @@ const Createmeal = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const createMeal = {
-            title: title,
-            created_date: date,
-            max_reservations: maxReservations,
-            description: description,
-            location: location,
-            when: when,
-            price: price
+            'title': title,
+            'created_date': date,
+            'max_reservations': maxReservations,
+            'description': description,
+            'location': location,
+            'when': when,
+            'price': price
         };
         setNewMeal(createMeal);
         console.log(newMeal);
-        setTitle('');
-        setMaxReservations('');
-        setDescription('');
-        setLocation('');
-        setWhen();
-        setPrice();
+        // setTitle('');
+        // setMaxReservations('');
+        // setDescription('');
+        // setLocation('');
+        // setWhen();
+        // setPrice();
     };
     return (
         <div>

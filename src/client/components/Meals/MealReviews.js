@@ -57,9 +57,9 @@ const Mealreviews = (props) => {
         };
         setReview(newReview);
         console.log(review);
-        setTitle('');
-        setDescription('');
-        setStars(4);
+        // setTitle('');
+        // setDescription('');
+        // setStars(4);
     };
 
     return (
