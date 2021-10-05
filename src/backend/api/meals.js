@@ -79,6 +79,15 @@ router.get("/", async (request, response) => {
     const meals = await knex("Meal").limit(parseInt(request.query.limit))
     return response.json(meals);
   }
+  else if (request.query.stars) {
+    const meals = await knex("Meal").join('Review', { 'Meal.id': 'Review.meal_id' })
+      .select('Meal.id',
+        knex.raw(
+          'sum(Review.stars) / count(Review.id) as "avg_stars"',
+        ))
+      .groupBy('Meal.id');
+    return response.json(meals);
+  }
   else if (request.query.availableReservations) {
     const meals = await knex("Meal").join('Reservation', { 'Meal.id': 'Reservation.meal_id' })
       .select('Meal.id', 'Meal.title', "Meal.when", 'Meal.max_reservations  as Total_reservations',
@@ -86,8 +95,8 @@ router.get("/", async (request, response) => {
           'Meal.max_reservations - sum(Reservation.number_of_guests) as "No_of_available_reservations"',
         ))
       .sum('Reservation.number_of_guests as reservations_booked')
-      .having('Meal.max_reservations', '>', "sum('Reservation.number_of_guests')")
-      .groupBy('Reservation.meal_id');
+      .having('Meal.max_reservations', '>', "sum(Reservation.number_of_guests)")
+      .groupBy('Meal.id');
     return response.json(meals);
   }
   else {

@@ -4,11 +4,13 @@ import Navbar from '../Navbar/Navbar';
 import { useParams } from "react-router";
 import ReactStars from "react-rating-stars-component";
 import Moment from 'moment';
+import Pics from '../Helper/Pics';
 
 const Mealreviews = (props) => {
     const params = useParams();
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
     const mealReviews = props.reviews.filter((r) => r.meal_id == Number(params.id));
+    const avgStars = props.stars.filter((m) => m.id == Number(params.id))[0];
     const starsValue = {
         size: 40,
         count: 5,
@@ -24,7 +26,7 @@ const Mealreviews = (props) => {
     const date = Moment(new Date()).format('YYYY-MM-DD');
     const [description, setDescription] = useState("");
     const [stars, setStars] = useState(starsValue.value);
-
+    const [pics, setPics] = useState(Pics)
     useEffect(() => {
         console.log(review);
         if (review) {
@@ -38,6 +40,7 @@ const Mealreviews = (props) => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data);
+                    alert('Successfully Added Your Review')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
@@ -68,14 +71,23 @@ const Mealreviews = (props) => {
             <div className="row">
                 <div className="col s12 ">
                     <div className="card blue-grey darken-1">
-                        {meal ? (<><div className="card-content white-text">
-                            <span className="card-title">{meal.title}</span>
-                            <p>Details: {meal.description}</p>
-                            <p>Location: {meal.location}</p>
-                            <p>Price: {meal.price}</p>
-                            <p>Maximum Reservations: {meal.max_reservations}</p>
-                            <p>Created On: {meal.created_date}</p>
-                        </div>
+                        {meal ? (<>
+                            <div className="card-image">
+                                <img src={pics[meal.id] ? pics[meal.id] : pics[meal.id % 5]} alt="background-image" className="center" />
+                            </div>
+                            <div className="card-content white-text">
+                                <span className="card-title">{meal.title}</span>
+                                <p>Details: {meal.description}</p>
+                                <p>Location: {meal.location}</p>
+                                <p>Price: {meal.price}</p>
+                                <p>Maximum Reservations: {meal.max_reservations}</p>
+                                <p>Created On: {meal.created_date}</p>
+                                <ReactStars {...
+                                    {
+                                        value: `${Math.ceil(Number(avgStars.avg_stars ? avgStars.avg_stars : 5))}`,
+                                        edit: false
+                                    }} />
+                            </div>
                             <div className="card-action">
                                 <ul>
                                     {!mealReviews.length == 0 ? (mealReviews.map((rev) => (

@@ -4,17 +4,28 @@ import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
+import ReactStars from "react-rating-stars-component";
+import Pics from '../Helper/Pics';
 
 const AddReservation = (props) => {
     const params = useParams();
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
+    const avgStars = props.stars.filter((m) => m.id == Number(params.id))[0];
     const [reservation, setReservation] = useState();
     const [guests, setGuests] = useState(1);
     const date = Moment(new Date()).format('YYYY-MM-DD');
     const [contact, setContact] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [availableReservations, setAvailableReservations] = useState(null)
+    const [pics, setPics] = useState(Pics)
     useEffect(() => {
+        fetch(`api/meals?availableReservations=true`)
+            .then(res => res.json())
+            .then(meals => {
+                const meal = meals.filter((m) => m.id === Number(params.id))[0];
+                setAvailableReservations(meal.No_of_available_reservations)
+            })
         console.log(reservation);
         if (reservation) {
             fetch("http://localhost:5000/api/reservations", {
@@ -27,6 +38,7 @@ const AddReservation = (props) => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data);
+                    alert('Successfully Added Reservation')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
@@ -54,14 +66,24 @@ const AddReservation = (props) => {
             <div className="row">
                 <div className="col s12 ">
                     <div className="card blue-grey darken-1">
-                        {meal ? (<><div className="card-content white-text">
-                            <span className="card-title">{meal.title}</span>
-                            <p>Details: {meal.description}</p>
-                            <p>Location: {meal.location}</p>
-                            <p>Price: {meal.price}</p>
-                            <p>Maximum Reservations: {meal.max_reservations}</p>
-                            <p>Created On: {meal.created_date}</p>
-                        </div>
+                        {meal ? (<>
+                            <div className="card-image">
+                                <img src={pics[meal.id] ? pics[meal.id] : pics[meal.id % 5]} alt="background-image" className="center" />
+                            </div>
+                            <div className="card-content white-text">
+                                <span className="card-title">{meal.title}</span>
+                                <p>Details: {meal.description}</p>
+                                <p>Location: {meal.location}</p>
+                                <p>Price: {meal.price}</p>
+                                <p>Maximum Reservations: {meal.max_reservations}</p>
+                                <p>Available Reservations: {!availableReservations ? meal.max_reservations : true}</p>
+                                <p>Created On: {meal.created_date}</p>
+                                <ReactStars {...
+                                    {
+                                        value: `${Math.ceil(Number(avgStars.avg_stars ? avgStars.avg_stars : 5))}`,
+                                        edit: false
+                                    }} />
+                            </div>
                             <div className="card-action">
                                 <Link to={`/meals/${meal.id}`}>Reserve</Link>
                                 <Link to={`/meals/${meal.id}/reviews`}>Check Reviews</Link>
@@ -79,7 +101,7 @@ const AddReservation = (props) => {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="no_guests" type="number" className="validate" min="1" onChange={(e) => setGuests(e.target.value)} />
+                            <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} onChange={(e) => setGuests(e.target.value)} />
                             <label htmlFor="no_guests">Number of Guests</label>
                         </div>
                     </div>

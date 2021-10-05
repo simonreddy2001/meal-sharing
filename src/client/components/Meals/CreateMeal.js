@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import Moment from 'moment';
+import Modal from '../Helper/Modal';
 
 const Createmeal = () => {
     const [newMeal, setNewMeal] = useState();
@@ -12,6 +13,7 @@ const Createmeal = () => {
     const [location, setLocation] = useState("");
     const [when, setWhen] = useState();
     const [price, setPrice] = useState();
+    const [modalShow, setModalShow] = React.useState(false);
     useEffect(() => {
         console.log(newMeal);
         if (newMeal) {
@@ -25,24 +27,29 @@ const Createmeal = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success:", data);
+                    // alert('Successfully Added Meal')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
                     // alert(error)
                 });
         }
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {});
+        });
     }, [newMeal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const createMeal = {
-            'title': title,
-            'created_date': date,
-            'max_reservations': maxReservations,
-            'description': description,
-            'location': location,
-            'when': when,
-            'price': price
+            'title': `${title}`,
+            'created_date': `${date}`,
+            'max_reservations': `${maxReservations}`,
+            'description': `${description}`,
+            'location': `${location}`,
+            'when': `${when}`,
+            'price': `${price}`
         };
         setNewMeal(createMeal);
         console.log(newMeal);
@@ -94,9 +101,11 @@ const Createmeal = () => {
                             <label htmlFor="when">Available Date</label>
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">Create A Meal
+                    <button className="btn waves-effect waves-light" type="submit" name="action" onClick={() => setModalShow(true)}>Create A Meal
                         <i className="material-icons right">send</i>
                     </button>
+                    <Modal show={modalShow}
+                        onHide={() => setModalShow(false)} />
                 </form>
             </div >
             <Footer />

@@ -14,6 +14,7 @@ function App() {
 
   const [meals, setMeals] = React.useState([]);
   const [reviews, setReviews] = React.useState([]);
+  const [stars, setStars] = React.useState([]);
 
   React.useEffect(() => {
     fetch("/api/meals")
@@ -28,6 +29,12 @@ function App() {
         console.log(data);
         setReviews(data);
       });
+    fetch("/api/meals?stars=true")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setStars(data);
+      });
   }, []);
 
 
@@ -35,16 +42,16 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home meals={meals} reviews={reviews} />
+          <Home meals={meals} reviews={reviews} stars={stars} />
         </Route>
         <Route exact path="/meals">
-          <Meals meals={meals} />
+          <Meals meals={meals} stars={stars} />
         </Route>
         <Route exact path={`/meals/:id`}>
-          <AddReservation meals={meals} />
+          <AddReservation meals={meals} stars={stars} />
         </Route>
         <Route exact path={`/meals/:id/reviews`}>
-          <Mealreviews meals={meals} reviews={reviews} />
+          <Mealreviews meals={meals} reviews={reviews} stars={stars} />
         </Route>
         <Route exact path="/create-meal">
           <Createmeal></Createmeal>
