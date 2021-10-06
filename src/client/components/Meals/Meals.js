@@ -16,12 +16,12 @@ const Meals = (props) => {
             <div className="mbsc-padding">
                 <div className="mbsc-grid">
                     <div className="mbsc-row mbsc-justify-content-center mbsc-padding">
-                        {props.meals.map((meal) => (
+                        {props.meals.map((meal, i) => (
                             <div className="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-3" key={meal.id}>
                                 <div className="col s12 m4">
                                     <div className="card">
                                         <div className="card-image">
-                                            <img src={pics[meal.id] ? pics[meal.id] : pics[Math.floor(Math.random * pics.length)]} alt="background-image" className="center" />
+                                            <img src={pics[i]} alt="background-image" className="center" />
                                         </div>
                                         <div className="card-content green-text">
                                             <span className="card-title">{meal.title}</span>
