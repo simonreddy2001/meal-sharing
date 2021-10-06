@@ -17,7 +17,8 @@ const Navbar = () => {
                     <img src={logo} alt="logo" width="122" />
                     <Link to="/" className="brand-logo"> Meal-Sharing</Link>
                     <a href="#" data-target="mobile-nav" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                    <ul className="right hide-on-med-and-down">
+                    <ul className="right">
+                        {/* hide-on-med-and-down */}
                         <li><Link to="/meals">Meals</Link></li>
                         <li><Link to="/create-meal">Add Meal</Link></li>
                         <li><Link to="/about">About</Link></li>
