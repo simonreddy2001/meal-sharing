@@ -38,14 +38,15 @@ const Mealreviews = (props) => {
                 },
                 body: JSON.stringify(review),
             })
-                .then((response) => response.json())
+                .then(res => res.text())
+                .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
                     alert('Successfully Added Your Review')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
-                    // alert(error)
+                    alert(error)
                 });
         }
     }, [review]);
@@ -96,7 +97,7 @@ const Mealreviews = (props) => {
                                         <li key={rev.id}>
                                             <div className="row">
                                                 <div className="col s12 m9">
-                                                    <div className="card blue-grey darken-1">
+                                                    <div className="card blue-grey">
                                                         <div className="card-content white-text">
                                                             <span className="card-title">{rev.title}</span>
                                                             <p>{rev.description}</p>
@@ -124,13 +125,13 @@ const Mealreviews = (props) => {
                     <form className="col s12" onSubmit={handleSubmit}>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="title" type="text" className="validate" value={title} required onChange={(e) => setTitle(e.target.value)} />
+                                <input id="title" type="text" className="validate" value={title || ''} required onChange={(e) => setTitle(e.target.value)} />
                                 <label htmlFor="title">Title</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="description" type="text" className="validate" value={description} onChange={(e) => setDescription(e.target.value)} />
+                                <input id="description" type="text" className="validate" value={description || ''} onChange={(e) => setDescription(e.target.value)} />
                                 <label htmlFor="description">Description</label>
                             </div>
                         </div>

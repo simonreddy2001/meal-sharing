@@ -24,14 +24,15 @@ const Createmeal = () => {
                 },
                 body: JSON.stringify(newMeal),
             })
-                .then((response) => response.json())
+                .then(res => res.text())
+                .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
-                    // alert('Successfully Added Meal')
+                    alert('Successfully Added Meal')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
-                    // alert(error)
+                    alert(error)
                 });
         }
         document.addEventListener('DOMContentLoaded', function () {
@@ -67,37 +68,37 @@ const Createmeal = () => {
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" required value={title} onChange={(e) => setTitle(e.target.value)} />
+                            <input id="title" type="text" className="validate" required value={title || ''} onChange={(e) => setTitle(e.target.value)} />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="description" type="text" className="validate" required value={description} onChange={(e) => setDescription(e.target.value)} />
+                            <input id="description" type="text" className="validate" required value={description || ''} onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="location" type="text" className="validate" required value={location} onChange={(e) => setLocation(e.target.value)} />
+                            <input id="location" type="text" className="validate" required value={location || ''} onChange={(e) => setLocation(e.target.value)} />
                             <label htmlFor="location">Location</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="price" type="number" className="validate" min="1" required value={price} onChange={(e) => setPrice(e.target.value)} />
+                            <input id="price" type="number" className="validate" min="1" required value={price || ''} onChange={(e) => setPrice(e.target.value)} />
                             <label htmlFor="price">Price</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="max_reservations" type="number" className="validate" min="1" required value={maxReservations} onChange={(e) => setMaxReservations(e.target.value)} />
+                            <input id="max_reservations" type="number" className="validate" min="1" required value={maxReservations || ''} onChange={(e) => setMaxReservations(e.target.value)} />
                             <label htmlFor="max_reservations">Maximum Reservations Available</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="when" type="date" className="validate" required value={when} onChange={(e) => setWhen(e.target.value)} />
+                            <input id="when" type="date" className="validate" required value={when || ''} onChange={(e) => setWhen(e.target.value)} />
                             <label htmlFor="when">Available Date</label>
                         </div>
                     </div>

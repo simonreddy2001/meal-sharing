@@ -37,14 +37,15 @@ const AddReservation = (props) => {
                 },
                 body: JSON.stringify(reservation),
             })
-                .then((response) => response.json())
+                .then(res => res.text())
+                .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
                     alert('Successfully Added Reservation')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
-                    // alert(error)
+                    alert(error)
                 });
         }
     }, [reservation]);
@@ -98,25 +99,25 @@ const AddReservation = (props) => {
                     <form className="col s12" onSubmit={handleSubmit}>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="full_name" type="text" className="validate" value={name} onChange={(e) => setName(e.target.value)} />
+                                <input id="full_name" type="text" className="validate" value={name || ''} onChange={(e) => setName(e.target.value)} />
                                 <label htmlFor="full_name">Full Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} value={guests} onChange={(e) => setGuests(e.target.value)} />
+                                <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} value={guests || ''} onChange={(e) => setGuests(e.target.value)} />
                                 <label htmlFor="no_guests">Number of Guests</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="email" type="email" className="validate" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input id="email" type="email" className="validate" value={email || ''} onChange={(e) => setEmail(e.target.value)} />
                                 <label htmlFor="email">Email</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="phone" type="tel" className="validate" value={contact} onChange={(e) => setContact(e.target.value)} />
+                                <input id="phone" type="tel" className="validate" value={contact || ''} onChange={(e) => setContact(e.target.value)} />
                                 <label htmlFor="phone">Phone Number</label>
                             </div>
                         </div>
