@@ -26,6 +26,8 @@ const Meals = (props) => {
                                         <div className="card-content green-text">
                                             <span className="card-title">{meal.title}</span>
                                             <p>{meal.description}</p>
+                                            <p>{meal.price} DKK</p>
+                                            <p>location: {meal.location}</p>
                                             <ReactStars {...
                                                 {
                                                     value: Math.ceil(Number((props.stars.filter((m) => m.id == meal.id)[0]) ? (props.stars.filter((m) => m.id == meal.id)[0]).avg_stars : 5)),
