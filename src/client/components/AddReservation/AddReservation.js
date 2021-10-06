@@ -12,13 +12,15 @@ const AddReservation = (props) => {
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
     const avgStars = props.stars.filter((m) => m.id == Number(params.id))[0];
     const [reservation, setReservation] = useState();
-    const [guests, setGuests] = useState(1);
+    const [guests, setGuests] = useState();
     const date = Moment(new Date()).format('YYYY-MM-DD');
     const [contact, setContact] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [availableReservations, setAvailableReservations] = useState(null)
     const [pics, setPics] = useState(Pics)
+
+
     useEffect(() => {
         fetch(`api/meals?availableReservations=true`)
             .then(res => res.json())
@@ -59,6 +61,7 @@ const AddReservation = (props) => {
         };
         setReservation(newReservation);
         console.log(reservation);
+        setName(''); setContact(''); setEmail(''); setGuests('')
     };
     return (
         <>
@@ -95,25 +98,25 @@ const AddReservation = (props) => {
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="full_name" type="text" className="validate" onChange={(e) => setName(e.target.value)} />
+                            <input id="full_name" type="text" className="validate" value={name} onChange={(e) => setName(e.target.value)} />
                             <label htmlFor="full_name">Full Name</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} onChange={(e) => setGuests(e.target.value)} />
+                            <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} value={guests} onChange={(e) => setGuests(e.target.value)} />
                             <label htmlFor="no_guests">Number of Guests</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" onChange={(e) => setEmail(e.target.value)} />
+                            <input id="email" type="email" className="validate" value={email} onChange={(e) => setEmail(e.target.value)} />
                             <label htmlFor="email">Email</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="phone" type="tel" className="validate" onChange={(e) => setContact(e.target.value)} />
+                            <input id="phone" type="tel" className="validate" value={contact} onChange={(e) => setContact(e.target.value)} />
                             <label htmlFor="phone">Phone Number</label>
                         </div>
                     </div>

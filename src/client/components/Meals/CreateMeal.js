@@ -53,12 +53,12 @@ const Createmeal = () => {
         };
         setNewMeal(createMeal);
         console.log(newMeal);
-        // setTitle('');
-        // setMaxReservations('');
-        // setDescription('');
-        // setLocation('');
-        // setWhen();
-        // setPrice();
+        setTitle('');
+        setMaxReservations('');
+        setDescription('');
+        setLocation('');
+        setWhen('');
+        setPrice('');
     };
     return (
         <div>
@@ -67,37 +67,37 @@ const Createmeal = () => {
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" required onChange={(e) => setTitle(e.target.value)} />
+                            <input id="title" type="text" className="validate" required value={title} onChange={(e) => setTitle(e.target.value)} />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="description" type="text" className="validate" required onChange={(e) => setDescription(e.target.value)} />
+                            <input id="description" type="text" className="validate" required value={description} onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="location" type="text" className="validate" required onChange={(e) => setLocation(e.target.value)} />
+                            <input id="location" type="text" className="validate" required value={location} onChange={(e) => setLocation(e.target.value)} />
                             <label htmlFor="location">Location</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="price" type="number" className="validate" min="1" required onChange={(e) => setPrice(e.target.value)} />
+                            <input id="price" type="number" className="validate" min="1" required value={price} onChange={(e) => setPrice(e.target.value)} />
                             <label htmlFor="price">Price</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="max_reservations" type="number" className="validate" min="1" required onChange={(e) => setMaxReservations(e.target.value)} />
+                            <input id="max_reservations" type="number" className="validate" min="1" required value={maxReservations} onChange={(e) => setMaxReservations(e.target.value)} />
                             <label htmlFor="max_reservations">Maximum Reservations Available</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="when" type="date" className="validate" required onChange={(e) => setWhen(e.target.value)} />
+                            <input id="when" type="date" className="validate" required value={when} onChange={(e) => setWhen(e.target.value)} />
                             <label htmlFor="when">Available Date</label>
                         </div>
                     </div>

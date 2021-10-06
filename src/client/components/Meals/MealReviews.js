@@ -27,6 +27,7 @@ const Mealreviews = (props) => {
     const [description, setDescription] = useState("");
     const [stars, setStars] = useState(starsValue.value);
     const [pics, setPics] = useState(Pics)
+
     useEffect(() => {
         console.log(review);
         if (review) {
@@ -60,9 +61,9 @@ const Mealreviews = (props) => {
         };
         setReview(newReview);
         console.log(review);
-        // setTitle('');
-        // setDescription('');
-        // setStars(4);
+        setTitle('');
+        setDescription('');
+        setStars(4);
     };
 
     return (
@@ -121,13 +122,13 @@ const Mealreviews = (props) => {
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" required onChange={(e) => setTitle(e.target.value)} />
+                            <input id="title" type="text" className="validate" value={title} required onChange={(e) => setTitle(e.target.value)} />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="description" type="text" className="validate" onChange={(e) => setDescription(e.target.value)} />
+                            <input id="description" type="text" className="validate" value={description} onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
