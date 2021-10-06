@@ -69,10 +69,11 @@ const Mealreviews = (props) => {
     return (
         <div>
             <Navbar />
-            <div className="row">
-                <div className="col s12 ">
-                    <div className="card blue-grey darken-1">
-                        {meal ? (<>
+
+            {meal ? (<>
+                <div className="row">
+                    <div className="col s12 ">
+                        <div className="card blue-grey darken-1">
                             <div className="card-image">
                                 <img src={pics[meal.id] ? pics[meal.id] : pics[meal.id % 5]} alt="background-image" className="center" />
                             </div>
@@ -114,35 +115,47 @@ const Mealreviews = (props) => {
                                         </li>
                                     ))) : "No Reviews Available"}
                                 </ul>
-                            </div></>) : "Loading"}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <form className="col s12" onSubmit={handleSubmit}>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" value={title} required onChange={(e) => setTitle(e.target.value)} />
-                            <label htmlFor="title">Title</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="description" type="text" className="validate" value={description} onChange={(e) => setDescription(e.target.value)} />
-                            <label htmlFor="description">Description</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <ReactStars {...starsValue} />
-                        </div>
-                    </div>
-                    <button className="btn waves-effect waves-light" type="submit">Add Review
-                        <i className="material-icons right">send</i>
-                    </button>
 
-                </form>
-            </div >
+                <div className="row">
+                    <form className="col s12" onSubmit={handleSubmit}>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="title" type="text" className="validate" value={title} required onChange={(e) => setTitle(e.target.value)} />
+                                <label htmlFor="title">Title</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="description" type="text" className="validate" value={description} onChange={(e) => setDescription(e.target.value)} />
+                                <label htmlFor="description">Description</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <ReactStars {...starsValue} />
+                            </div>
+                        </div>
+                        <button className="btn waves-effect waves-light" type="submit">Add Review
+                            <i className="material-icons right">send</i>
+                        </button>
+
+                    </form>
+                </div ></>) : <div className="preloader-wrapper big active">
+                <div className="spinner-layer spinner-blue">
+                    <div className="circle-clipper left">
+                        <div className="circle"></div>
+                    </div><div className="gap-patch">
+                        <div className="circle"></div>
+                    </div><div className="circle-clipper right">
+                        <div className="circle"></div>
+                    </div>
+                </div>
+            </div>}
+
             <Footer />
         </div>
     );

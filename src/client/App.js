@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Meals from "./components/Meals/Meals";
 import AddReservation from "./components/AddReservation/AddReservation";
-import TestComponent from "./components/TestComponent/TestComponent";
 import Createmeal from "./components/Meals/CreateMeal";
 import Mealreviews from "./components/Meals/MealReviews";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import About from "./components/About/About";
 
 
 function App() {
@@ -56,8 +56,8 @@ function App() {
         <Route exact path="/create-meal">
           <Createmeal></Createmeal>
         </Route>
-        <Route exact path="/test-component">
-          <TestComponent></TestComponent>
+        <Route exact path="/about">
+          <About />
         </Route>
         <Route path="*">
           <Navbar />

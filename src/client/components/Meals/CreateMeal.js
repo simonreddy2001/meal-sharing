@@ -8,7 +8,7 @@ const Createmeal = () => {
     const [newMeal, setNewMeal] = useState();
     const [title, setTitle] = useState("");
     const date = Moment(new Date()).format('YYYY-MM-DD');
-    const [maxReservations, setMaxReservations] = useState(0);
+    const [maxReservations, setMaxReservations] = useState();
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [when, setWhen] = useState();
@@ -58,7 +58,7 @@ const Createmeal = () => {
         setDescription('');
         setLocation('');
         setWhen('');
-        setPrice('');
+        setPrice();
     };
     return (
         <div>

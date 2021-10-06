@@ -66,10 +66,11 @@ const AddReservation = (props) => {
     return (
         <>
             <Navbar />
-            <div className="row">
-                <div className="col s12 ">
-                    <div className="card blue-grey darken-1">
-                        {meal ? (<>
+
+            {meal ? (<>
+                <div className="row">
+                    <div className="col s12 ">
+                        <div className="card blue-grey darken-1">
                             <div className="card-image">
                                 <img src={pics[meal.id] ? pics[meal.id] : pics[meal.id % 5]} alt="background-image" className="center" />
                             </div>
@@ -90,41 +91,53 @@ const AddReservation = (props) => {
                             <div className="card-action">
                                 <Link to={`/meals/${meal.id}`}>Reserve</Link>
                                 <Link to={`/meals/${meal.id}/reviews`}>Check Reviews</Link>
-                            </div></>) : "Loading"}
+                            </div></div>
+                    </div>
+                </div>
+                <div className="row">
+                    <form className="col s12" onSubmit={handleSubmit}>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="full_name" type="text" className="validate" value={name} onChange={(e) => setName(e.target.value)} />
+                                <label htmlFor="full_name">Full Name</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} value={guests} onChange={(e) => setGuests(e.target.value)} />
+                                <label htmlFor="no_guests">Number of Guests</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="email" type="email" className="validate" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <label htmlFor="email">Email</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input id="phone" type="tel" className="validate" value={contact} onChange={(e) => setContact(e.target.value)} />
+                                <label htmlFor="phone">Phone Number</label>
+                            </div>
+                        </div>
+                        <button className="btn waves-effect waves-light" type="submit">RESERVE
+                            <i className="material-icons right">send</i>
+                        </button>
+                    </form>
+                </div>
+            </>) : <div className="preloader-wrapper big active">
+                <div className="spinner-layer spinner-blue">
+                    <div className="circle-clipper left">
+                        <div className="circle"></div>
+                    </div><div className="gap-patch">
+                        <div className="circle"></div>
+                    </div><div className="circle-clipper right">
+                        <div className="circle"></div>
                     </div>
                 </div>
             </div>
-            <div className="row">
-                <form className="col s12" onSubmit={handleSubmit}>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="full_name" type="text" className="validate" value={name} onChange={(e) => setName(e.target.value)} />
-                            <label htmlFor="full_name">Full Name</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} value={guests} onChange={(e) => setGuests(e.target.value)} />
-                            <label htmlFor="no_guests">Number of Guests</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <label htmlFor="email">Email</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input id="phone" type="tel" className="validate" value={contact} onChange={(e) => setContact(e.target.value)} />
-                            <label htmlFor="phone">Phone Number</label>
-                        </div>
-                    </div>
-                    <button className="btn waves-effect waves-light" type="submit">RESERVE
-                        <i className="material-icons right">send</i>
-                    </button>
-                </form>
-            </div>
+
+            }
             <Footer />
         </>
     );

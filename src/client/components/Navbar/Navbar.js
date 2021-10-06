@@ -25,7 +25,7 @@ const Navbar = () => {
                     <ul className="sidenav" id="mobile-nav">
                         <li><Link to="/meals">Meals</Link></li>
                         <li><Link to="/create-meal">Add Meal</Link></li>
-                        <li><Link to="/test-component">Test</Link></li>
+                        <li><Link to="/about">About</Link></li>
                     </ul>
                 </div>
             </nav>
