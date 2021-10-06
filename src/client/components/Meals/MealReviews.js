@@ -31,7 +31,7 @@ const Mealreviews = (props) => {
     useEffect(() => {
         console.log(review);
         if (review) {
-            fetch("http://localhost:5000/api/reviews", {
+            fetch("/api/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

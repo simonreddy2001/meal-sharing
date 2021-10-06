@@ -30,7 +30,7 @@ const AddReservation = (props) => {
             })
         console.log(reservation);
         if (reservation) {
-            fetch("http://localhost:5000/api/reservations", {
+            fetch("/api/reservations", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

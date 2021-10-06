@@ -17,7 +17,7 @@ const Createmeal = () => {
     useEffect(() => {
         console.log(newMeal);
         if (newMeal) {
-            fetch("http://localhost:5000/api/meals", {
+            fetch("/api/meals", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
