@@ -21,7 +21,7 @@ const Meals = (props) => {
                                 <div className="col s12 m4">
                                     <div className="card">
                                         <div className="card-image">
-                                            <img src={pics[meal.id] ? pics[meal.id] : pics[meal.id % 5]} alt="background-image" className="center" />
+                                            <img src={pics[meal.id] ? pics[meal.id] : pics[Math.floor(Math.random * pics.length)]} alt="background-image" className="center" />
                                         </div>
                                         <div className="card-content green-text">
                                             <span className="card-title">{meal.title}</span>
