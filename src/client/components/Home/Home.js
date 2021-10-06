@@ -22,33 +22,34 @@ const Home = (props) => {
         <Navbar />
         <div>
             <hr />
-            <img src={bg} alt="background-image" className="center" />
             <h1>Available Meals</h1>
             <p>Developed by Simon</p>
             <div>
                 <input type='text' placeholder="search for meal" onChange={(e) => setSearch(e.target.value)} />
-
-                <ul>
-                    {meals.map((meal) => (
-                        <li key={meal.id}>
-                            <div className="row">
-                                <div className="col s12 m6">
-                                    <div className="card blue-grey darken-1">
-                                        <div className="card-content white-text">
-                                            <span className="card-title">{meal.title}</span>
-                                            <p>{meal.description}</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <Link to={`/meals/${meal.id}`}>Details</Link>
+                <div className="mbsc-padding">
+                    <div className="mbsc-grid">
+                        <div className="mbsc-row mbsc-justify-content-center mbsc-padding">
+                            {meals.map((meal) => (
+                                <div className="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-3" key={meal.id}>
+                                    <div className="col s12 m4">
+                                        <div className="card blue-grey darken-1">
+                                            <div className="card-content white-text">
+                                                <span className="card-title">{meal.title}</span>
+                                                <p>{meal.description}</p>
+                                            </div>
+                                            <div className="card-action">
+                                                <Link to={`/meals/${meal.id}`}>Details</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <img src={bg} alt="background-image" className="center" />
         <Footer />
     </>
     );

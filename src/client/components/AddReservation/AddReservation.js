@@ -23,8 +23,8 @@ const AddReservation = (props) => {
         fetch(`api/meals?availableReservations=true`)
             .then(res => res.json())
             .then(meals => {
-                const meal = meals.filter((m) => m.id === Number(params.id))[0];
-                setAvailableReservations(meal.No_of_available_reservations)
+                const meal1 = meals.filter((m) => m.id === Number(params.id))[0];
+                setAvailableReservations(meal1 ? meal1.No_of_available_reservations : meal.max_reservations)
             })
         console.log(reservation);
         if (reservation) {
@@ -76,11 +76,11 @@ const AddReservation = (props) => {
                                 <p>Location: {meal.location}</p>
                                 <p>Price: {meal.price}</p>
                                 <p>Maximum Reservations: {meal.max_reservations}</p>
-                                <p>Available Reservations: {!availableReservations ? meal.max_reservations : true}</p>
-                                <p>Created On: {meal.created_date}</p>
+                                <p>Available Reservations: {availableReservations}</p>
+                                <p>Created On: {meal.created_date.slice(0, 10)}</p>
                                 <ReactStars {...
                                     {
-                                        value: `${Math.ceil(Number(avgStars.avg_stars ? avgStars.avg_stars : 5))}`,
+                                        value: Math.ceil(Number(avgStars ? avgStars.avg_stars : 5)),
                                         edit: false
                                     }} />
                             </div>

@@ -17,7 +17,6 @@ const Meals = (props) => {
                 <div className="mbsc-grid">
                     <div className="mbsc-row mbsc-justify-content-center mbsc-padding">
                         {props.meals.map((meal) => (
-
                             <div className="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-3" key={meal.id}>
                                 <div className="col s12 m4">
                                     <div className="card">
@@ -29,7 +28,7 @@ const Meals = (props) => {
                                             <p>{meal.description}</p>
                                             <ReactStars {...
                                                 {
-                                                    value: 3,
+                                                    value: Math.ceil(Number((props.stars.filter((m) => m.id == meal.id)[0]) ? (props.stars.filter((m) => m.id == meal.id)[0]).avg_stars : 5)),
                                                     edit: false
                                                 }} />
                                         </div>

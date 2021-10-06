@@ -81,10 +81,10 @@ const Mealreviews = (props) => {
                                 <p>Location: {meal.location}</p>
                                 <p>Price: {meal.price}</p>
                                 <p>Maximum Reservations: {meal.max_reservations}</p>
-                                <p>Created On: {meal.created_date}</p>
+                                <p>Created On: {meal.created_date.slice(0, 10)}</p>
                                 <ReactStars {...
                                     {
-                                        value: `${Math.ceil(Number(avgStars.avg_stars ? avgStars.avg_stars : 5))}`,
+                                        value: Math.ceil(Number(avgStars ? avgStars.avg_stars : 5)),
                                         edit: false
                                     }} />
                             </div>
@@ -102,10 +102,10 @@ const Mealreviews = (props) => {
                                                         <div className="card-action">
                                                             <ReactStars {...
                                                                 {
-                                                                    value: `${rev.stars}`,
+                                                                    value: rev.stars,
                                                                     edit: false
                                                                 }} />
-                                                            <p>{rev.created_date}</p>
+                                                            <p>{rev.created_date.slice(0, 10)}</p>
                                                         </div>
                                                     </div>
                                                 </div>

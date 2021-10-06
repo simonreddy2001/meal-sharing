@@ -43,13 +43,13 @@ const Createmeal = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const createMeal = {
-            'title': `${title}`,
-            'created_date': `${date}`,
-            'max_reservations': `${maxReservations}`,
-            'description': `${description}`,
-            'location': `${location}`,
-            'when': `${when}`,
-            'price': `${price}`
+            "title": title,
+            "created_date": date,
+            "max_reservations": maxReservations,
+            "description": description,
+            "location": location,
+            "when": when,
+            "price": price
         };
         setNewMeal(createMeal);
         console.log(newMeal);
@@ -67,45 +67,43 @@ const Createmeal = () => {
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="title" type="text" className="validate" onChange={(e) => setTitle(e.target.value)} />
+                            <input id="title" type="text" className="validate" required onChange={(e) => setTitle(e.target.value)} />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="description" type="text" className="validate" onChange={(e) => setDescription(e.target.value)} />
+                            <input id="description" type="text" className="validate" required onChange={(e) => setDescription(e.target.value)} />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="location" type="text" className="validate" onChange={(e) => setLocation(e.target.value)} />
+                            <input id="location" type="text" className="validate" required onChange={(e) => setLocation(e.target.value)} />
                             <label htmlFor="location">Location</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="price" type="number" className="validate" min="1" onChange={(e) => setPrice(e.target.value)} />
+                            <input id="price" type="number" className="validate" min="1" required onChange={(e) => setPrice(e.target.value)} />
                             <label htmlFor="price">Price</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="max_reservations" type="number" className="validate" min="1" onChange={(e) => setMaxReservations(e.target.value)} />
+                            <input id="max_reservations" type="number" className="validate" min="1" required onChange={(e) => setMaxReservations(e.target.value)} />
                             <label htmlFor="max_reservations">Maximum Reservations Available</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="when" type="date" className="validate" onChange={(e) => setWhen(e.target.value)} />
+                            <input id="when" type="date" className="validate" required onChange={(e) => setWhen(e.target.value)} />
                             <label htmlFor="when">Available Date</label>
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action" onClick={() => setModalShow(true)}>Create A Meal
+                    <button className="btn waves-effect waves-light" type="submit" name="action" onClick={() => setModalShow(true)}>Create A Meal<Modal />
                         <i className="material-icons right">send</i>
                     </button>
-                    <Modal show={modalShow}
-                        onHide={() => setModalShow(false)} />
                 </form>
             </div >
             <Footer />
