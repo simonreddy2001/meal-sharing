@@ -20,7 +20,7 @@ const Meals = (props) => {
                                 <div className="col s12 m4">
                                     <div className="card">
                                         <div className="card-image">
-                                            <img src={pics[i]} alt="background-image" className="center" />
+                                            <img src={pics[i] || pics[i % pics.length]} alt="background-image" className="center" />
                                         </div>
                                         <div className="card-content green-text">
                                             <span className="card-title">{meal.title}</span>
