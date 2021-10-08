@@ -86,7 +86,7 @@ const AddReservation = (props) => {
                                 <p>Created On: {meal.created_date.slice(0, 10)}</p>
                                 <ReactStars {...
                                     {
-                                        value: Math.ceil(Number(avgStars ? avgStars.avg_stars : 5)),
+                                        value: Math.ceil(Number(avgStars ? avgStars.avg_stars : 0)),
                                         edit: false
                                     }} />
                             </div>
