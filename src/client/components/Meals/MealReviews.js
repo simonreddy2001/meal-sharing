@@ -44,7 +44,7 @@ const Mealreviews = (props) => {
                 .then((data) => {
                     console.log("Success:", data);
                     alert('Successfully Added Your Review')
-                    location.href = '/';
+                    location.href = `/meals/${meal.id}/reviews`;
                 })
                 .catch((error) => {
                     console.log("Error:", error);
