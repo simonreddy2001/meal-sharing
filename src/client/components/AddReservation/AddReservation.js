@@ -42,6 +42,7 @@ const AddReservation = (props) => {
                 .then((data) => {
                     console.log("Success:", data);
                     alert('Successfully Added Reservation')
+                    location.href = '/';
                 })
                 .catch((error) => {
                     console.log("Error:", error);

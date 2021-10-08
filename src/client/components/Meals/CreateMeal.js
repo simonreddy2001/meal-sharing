@@ -27,9 +27,8 @@ const Createmeal = () => {
                 .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
-                    var elems = document.querySelectorAll('.modal');
-                    var instances = M.Modal.init(elems, {});
-                    // alert('Successfully Added Meal')
+                    alert('Successfully Added Meal')
+                    location.href = '/';
                 })
                 .catch((error) => {
                     console.log("Error:", error);

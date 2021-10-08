@@ -44,6 +44,7 @@ const Mealreviews = (props) => {
                 .then((data) => {
                     console.log("Success:", data);
                     alert('Successfully Added Your Review')
+                    location.href = '/';
                 })
                 .catch((error) => {
                     console.log("Error:", error);
@@ -93,6 +94,7 @@ const Mealreviews = (props) => {
                                     }} />
                             </div>
                             <div className="card-action">
+                                <Link to={`/meals/${meal.id}`}>Hide Reviews</Link>
                                 <ul>
                                     {!mealReviews.length == 0 ? (mealReviews.map((rev) => (
                                         <li key={rev.id}>
