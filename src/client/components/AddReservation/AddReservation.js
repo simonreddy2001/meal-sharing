@@ -105,7 +105,7 @@ const AddReservation = (props) => {
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="no_guests" type="number" className="validate" min="1" max={`${!availableReservations ? meal.max_reservations : true}`} value={guests || ''} onChange={(e) => setGuests(e.target.value)} />
+                                <input id="no_guests" type="number" className="validate" min="1" max={availableReservations} value={guests || null} onChange={(e) => setGuests(e.target.value)} />
                                 <label htmlFor="no_guests">Number of Guests</label>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ const AddReservation = (props) => {
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="phone" type="tel" className="validate" value={contact || ''} onChange={(e) => setContact(e.target.value)} />
+                                <input id="phone" type="tel" className="validate" placeholder="123-45-678" pattern="[0-9]{8}" value={contact || null} onChange={(e) => setContact(e.target.value)} />
                                 <label htmlFor="phone">Phone Number</label>
                             </div>
                         </div>
