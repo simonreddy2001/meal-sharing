@@ -118,7 +118,7 @@ const AddReservation = (props) => {
                         <div className="row">
                             <div className="input-field col s12">
                                 <input id="phone" type="tel" className="validate" pattern="[0-9]{8}" value={contact || ''} onChange={(e) => setContact(e.target.value)} />
-                                <label htmlFor="phone">Phone Number (12345678)</label>
+                                <label htmlFor="phone">Phone Number ( Ex: 12345678 )</label>
                             </div>
                         </div>
                         <button className="btn waves-effect waves-light" type="submit">RESERVE

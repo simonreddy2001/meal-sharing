@@ -3,7 +3,6 @@ import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
-import mobiscroll from '@mobiscroll/react-lite';
 import '@mobiscroll/react-lite/dist/css/mobiscroll.min.css';
 import Pics from '../Helper/Pics';
 
@@ -30,7 +29,7 @@ const Meals = (props) => {
                                             <p>location: {meal.location}</p>
                                             <ReactStars {...
                                                 {
-                                                    value: Math.ceil(Number((props.stars.filter((m) => m.id == meal.id)[0]) ? (props.stars.filter((m) => m.id == meal.id)[0]).avg_stars : 5)),
+                                                    value: Math.ceil(Number((props.stars.filter((m) => m.id == meal.id)[0]) ? (props.stars.filter((m) => m.id == meal.id)[0]).avg_stars : 0)),
                                                     edit: false
                                                 }} />
                                         </div>
@@ -41,7 +40,6 @@ const Meals = (props) => {
                                     </div>
                                 </div>
                             </div>
-
                         ))}
                     </div>
                 </div></div>

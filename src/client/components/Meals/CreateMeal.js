@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import Moment from 'moment';
-import Modal from '../Helper/Modal';
 
 const Createmeal = () => {
     const [newMeal, setNewMeal] = useState();
@@ -13,7 +12,7 @@ const Createmeal = () => {
     const [location, setLocation] = useState("");
     const [when, setWhen] = useState();
     const [price, setPrice] = useState();
-    const [modalShow, setModalShow] = React.useState(false);
+
     useEffect(() => {
         console.log(newMeal);
         if (newMeal) {
@@ -28,17 +27,15 @@ const Createmeal = () => {
                 .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
-                    alert('Successfully Added Meal')
+                    var elems = document.querySelectorAll('.modal');
+                    var instances = M.Modal.init(elems, {});
+                    // alert('Successfully Added Meal')
                 })
                 .catch((error) => {
                     console.log("Error:", error);
                     alert(error)
                 });
         }
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems, {});
-        });
     }, [newMeal]);
 
     const handleSubmit = (e) => {
@@ -98,11 +95,11 @@ const Createmeal = () => {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="when" type="date" className="validate" required value={when || ''} onChange={(e) => setWhen(e.target.value)} />
+                            <input id="when" type="date" className="validate" required min={date} value={when || ''} onChange={(e) => setWhen(e.target.value)} />
                             <label htmlFor="when">Available Date</label>
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action" onClick={() => setModalShow(true)}>Create A Meal<Modal />
+                    <button className="btn waves-effect waves-light" type="submit" name="action">Create A Meal
                         <i className="material-icons right">send</i>
                     </button>
                 </form>
