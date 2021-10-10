@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
-import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import ReactStars from "react-rating-stars-component";
 import Pics from '../Helper/Pics';
+import OkModal from '../Helper/OkModal'
 
 const AddReservation = (props) => {
     const params = useParams();
@@ -19,6 +18,7 @@ const AddReservation = (props) => {
     const [email, setEmail] = useState("");
     const [availableReservations, setAvailableReservations] = useState(null)
     const [pics, setPics] = useState(Pics)
+    const [show, setShow] = useState(false)
 
 
     useEffect(() => {
@@ -41,8 +41,7 @@ const AddReservation = (props) => {
                 .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
-                    alert('Successfully Added Reservation')
-                    location.href = '/';
+                    setShow(true)
                 })
                 .catch((error) => {
                     console.log("Error:", error);
@@ -67,8 +66,8 @@ const AddReservation = (props) => {
     };
     return (
         <>
-            <Navbar />
 
+            <OkModal show={show} data={"reservation"} link={'/'} />
             {meal ? (<>
                 <div className="row">
                     <div className="col s12 ">
@@ -82,7 +81,7 @@ const AddReservation = (props) => {
                                 <p>Location: {meal.location}</p>
                                 <p>Price: {meal.price}</p>
                                 <p>Maximum Reservations: {meal.max_reservations}</p>
-                                <p>Available Reservations: {availableReservations}</p>
+                                <p>Available Reservations: {availableReservations ? availableReservations : meal.max_reservations}</p>
                                 <p>Created On: {meal.created_date.slice(0, 10)}</p>
                                 <ReactStars {...
                                     {
@@ -100,32 +99,34 @@ const AddReservation = (props) => {
                     <form className="col s12" onSubmit={handleSubmit}>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="full_name" type="text" className="validate" value={name || ''} onChange={(e) => setName(e.target.value)} />
+                                <input id="full_name" type="text" className="validate" required value={name || ''} onChange={(e) => setName(e.target.value)} />
                                 <label htmlFor="full_name">Full Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="no_guests" type="number" className="validate" min="1" max={availableReservations} value={guests || ''} onChange={(e) => setGuests(e.target.value)} />
+                                <input id="no_guests" type="number" className="validate" min="1" max={availableReservations} required value={guests || ''} onChange={(e) => setGuests(e.target.value)} />
                                 <label htmlFor="no_guests">Number of Guests</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="email" type="email" className="validate" value={email || ''} onChange={(e) => setEmail(e.target.value)} />
+                                <input id="email" type="email" className="validate" required value={email || ''} onChange={(e) => setEmail(e.target.value)} />
                                 <label htmlFor="email">Email</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="phone" type="tel" className="validate" pattern="[0-9]{8}" value={contact || ''} onChange={(e) => setContact(e.target.value)} />
+                                <input id="phone" type="tel" className="validate" pattern="[0-9]{8}" required value={contact || ''} onChange={(e) => setContact(e.target.value)} />
                                 <label htmlFor="phone">Phone Number ( Ex: 12345678 )</label>
                             </div>
                         </div>
+
                         <button className="btn waves-effect waves-light" type="submit">RESERVE
                             <i className="material-icons right">send</i>
                         </button>
                     </form>
+
                 </div>
             </>) : <div className="preloader-wrapper big active">
                 <div className="spinner-layer spinner-blue">
@@ -140,7 +141,7 @@ const AddReservation = (props) => {
             </div>
 
             }
-            <Footer />
+
         </>
     );
 };

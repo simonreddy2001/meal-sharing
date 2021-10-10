@@ -40,6 +40,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <Switch>
         <Route exact path="/">
           <Home meals={meals} reviews={reviews} stars={stars} />
@@ -60,12 +61,11 @@ function App() {
           <About />
         </Route>
         <Route path="*">
-          <Navbar />
           <h1>Not Found: 404</h1>
           <p>It is not available what you are looking for .. please go to navigation and try other links</p>
-          <Footer />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

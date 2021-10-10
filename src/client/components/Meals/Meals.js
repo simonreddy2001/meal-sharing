@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import '@mobiscroll/react-lite/dist/css/mobiscroll.min.css';
@@ -11,7 +9,7 @@ const Meals = (props) => {
 
     return (
         <div>
-            <Navbar />
+
             <div className="mbsc-padding">
                 <div className="mbsc-grid">
                     <div className="mbsc-row mbsc-justify-content-center mbsc-padding">
@@ -43,7 +41,7 @@ const Meals = (props) => {
                         ))}
                     </div>
                 </div></div>
-            <Footer />
+
         </div>
     );
 }

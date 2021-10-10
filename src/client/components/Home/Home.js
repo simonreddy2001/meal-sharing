@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.css"
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import bg from './../../assets/images/bg.png'
 
@@ -19,7 +17,7 @@ const Home = (props) => {
     }, [search])
 
     return (<>
-        <Navbar />
+
         <div>
             <hr />
             <h1>Available Meals</h1>
@@ -50,7 +48,7 @@ const Home = (props) => {
             </div>
         </div>
         <img src={bg} alt="background-image" className="center" />
-        <Footer />
+
     </>
     );
 };

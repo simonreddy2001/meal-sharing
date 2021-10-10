@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
 import Moment from 'moment';
+import OkModal from '../Helper/OkModal'
 
 const Createmeal = () => {
     const [newMeal, setNewMeal] = useState();
@@ -12,6 +11,7 @@ const Createmeal = () => {
     const [location, setLocation] = useState("");
     const [when, setWhen] = useState();
     const [price, setPrice] = useState();
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         console.log(newMeal);
@@ -27,8 +27,7 @@ const Createmeal = () => {
                 .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
-                    alert('Successfully Added Meal')
-                    location.href = '/';
+                    setShow(true);
                 })
                 .catch((error) => {
                     console.log("Error:", error);
@@ -59,7 +58,7 @@ const Createmeal = () => {
     };
     return (
         <div>
-            <Navbar />
+            <OkModal show={show} data={"meal"} link={'/meals'} />
             <div className="row">
                 <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">
@@ -103,7 +102,7 @@ const Createmeal = () => {
                     </button>
                 </form>
             </div >
-            <Footer />
+
         </div >
     );
 }

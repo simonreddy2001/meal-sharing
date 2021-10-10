@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
 import { useParams } from "react-router";
 import ReactStars from "react-rating-stars-component";
 import Moment from 'moment';
 import Pics from '../Helper/Pics';
 import { Link } from 'react-router-dom';
+import OkModal from '../Helper/OkModal'
 
 const Mealreviews = (props) => {
     const params = useParams();
@@ -28,6 +27,7 @@ const Mealreviews = (props) => {
     const [description, setDescription] = useState("");
     const [stars, setStars] = useState(starsValue.value);
     const [pics, setPics] = useState(Pics)
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         console.log(review);
@@ -43,8 +43,7 @@ const Mealreviews = (props) => {
                 .then(text => console.log(text))
                 .then((data) => {
                     console.log("Success:", data);
-                    alert('Successfully Added Your Review')
-                    location.href = `/meals/${meal.id}/reviews`;
+                    setShow(true)
                 })
                 .catch((error) => {
                     console.log("Error:", error);
@@ -71,8 +70,7 @@ const Mealreviews = (props) => {
 
     return (
         <div>
-            <Navbar />
-
+            <OkModal show={show} data={"review"} link={`/meals/${params.id}/reviews`} />
             {meal ? (<>
                 <div className="row">
                     <div className="col s12 ">
@@ -159,7 +157,7 @@ const Mealreviews = (props) => {
                     </div>
                 </div>
             </div>}
-            <Footer />
+
         </div>
     );
 }
