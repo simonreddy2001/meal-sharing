@@ -20,6 +20,7 @@
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
+    "@mobiscroll/react-lite": "^4.10.9",
     "@types/xml": "^1.0.3",
     "app-root-path": "^2.1.0",
     "babel-loader": "^8.1.0",
@@ -36,11 +37,14 @@
     "express-form-data": "^2.0.1",
     "html-webpack-plugin": "^4.3.0",
     "knex": "^0.21.1",
+    "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.29.1",
     "multer": "^1.3.0",
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^5.0.1",
     "sass": "^1.27.1",
     "sass-loader": "^10.0.4",
@@ -51,10 +55,11 @@
     "webpack-cli": "3.3.5"
   },
   "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
+    "concurrently": "^5.3.0",
+    "file-loader": "^6.2.0",
     "nodemon": "^1.12.1",
     "sequelize-cli": "^5.4.0",
-    "webpack-dev-server": "^3.11.0",
-    "concurrently": "^5.3.0",
-    "case-sensitive-paths-webpack-plugin": "^2.3.0"
+    "webpack-dev-server": "^3.11.0"
   }
 }
