@@ -4,7 +4,7 @@ import Home from "./components/Home/Home";
 import Meals from "./components/Meals/Meals";
 import AddReservation from "./components/AddReservation/AddReservation";
 import Createmeal from "./components/Meals/CreateMeal";
-import Mealreviews from "./components/Meals/MealReviews";
+import MealReviews from "./components/Meals/MealReviews";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
@@ -52,7 +52,7 @@ function App() {
           <AddReservation meals={meals} stars={stars} />
         </Route>
         <Route exact path={`/meals/:id/reviews`}>
-          <Mealreviews meals={meals} reviews={reviews} stars={stars} />
+          <MealReviews meals={meals} reviews={reviews} stars={stars} />
         </Route>
         <Route exact path="/create-meal">
           <Createmeal></Createmeal>

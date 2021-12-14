@@ -5,7 +5,7 @@ import '@mobiscroll/react-lite/dist/css/mobiscroll.min.css';
 import Pics from '../Helper/Pics';
 
 const Meals = (props) => {
-    const [pics, setPics] = useState(Pics)
+    const pics = Pics;
 
     return (
         <div>

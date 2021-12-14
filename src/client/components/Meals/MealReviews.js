@@ -6,7 +6,7 @@ import Pics from '../Helper/Pics';
 import { Link } from 'react-router-dom';
 import OkModal from '../Helper/OkModal'
 
-const Mealreviews = (props) => {
+const MealReviews = (props) => {
     const params = useParams();
     const meal = props.meals.filter((m) => m.id == Number(params.id))[0];
     const mealReviews = props.reviews.filter((r) => r.meal_id == Number(params.id));
@@ -162,4 +162,4 @@ const Mealreviews = (props) => {
     );
 }
 
-export default Mealreviews;
+export default MealReviews;
